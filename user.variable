@@ -1,0 +1,12 @@
+{
+  given_name: 'John',
+  family_name: 'Doe',
+  nickname: 'johndoe',
+  name: 'John Doe',
+  picture: 'https://flash.za.com/wp-content/uploads/2015/08/Generic-Profile.png',
+  locale: 'en',
+  updated_at: '2020-11-11T21:22:55.993Z',
+  email: 'johndoe@fakemail.com',
+  email_verified: true,
+  sub: 'google-oauth2|123456789'
+}

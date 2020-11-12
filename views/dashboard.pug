@@ -1,0 +1,14 @@
+extends layout
+
+block variables
+  - var title = "Dashboard"
+  - var user_photo = user.picture
+
+block content
+  h2.text-center Dashboard
+
+  .row
+    .offset-sm-2.col-sm-8
+      .jumbotron.text-center.
+        #[img(src=`${user_photo}`)] #[br]
+        Welcome to your dashboard page, #{user.nickname}.

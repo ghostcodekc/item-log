@@ -1,0 +1,45 @@
+extends layout
+
+block variables
+  - var title = "Profile"
+  - var user_photo = user.picture
+
+block content
+  h2.text-center Profile
+
+  .row
+    .offset-sm-2.col-sm-8
+      .jumbotron.text-center.
+        #[img(src=`${user_photo}`)] #[br]
+        Welcome to your profile page, #{user.nickname}.
+  .row
+    .card.card-body
+      h4.card-title #{user.nickname}'s Full Name
+      h6.card-subtitle.mb-2.text-muted subtitle
+      p.card-text Users First Name: #{user.given_name}
+      p.card-text Users Last Name: #{user.family_name}
+    .card.card-body
+      h4.card-title #{user.nickname}'s Full Name
+      h6.card-subtitle.mb-2.text-muted subtitle
+      p.card-text Users First Name: #{user.given_name}
+      p.card-text Users Last Name: #{user.family_name}
+    .card.card-body
+      h4.card-title #{user.nickname}'s Full Name
+      h6.card-subtitle.mb-2.text-muted subtitle
+      p.card-text Users First Name: #{user.given_name}
+      p.card-text Users Last Name: #{user.family_name}
+    .card.card-body
+      h4.card-title #{user.nickname}'s Full Name
+      h6.card-subtitle.mb-2.text-muted subtitle
+      p.card-text Users First Name: #{user.given_name}
+      p.card-text Users Last Name: #{user.family_name}
+    .card.card-body
+      h4.card-title #{user.nickname}'s Full Name
+      h6.card-subtitle.mb-2.text-muted subtitle
+      p.card-text Users First Name: #{user.given_name}
+      p.card-text Users Last Name: #{user.family_name}
+    .card.card-body
+      h4.card-title #{user.nickname}'s E-Mail Address
+      h6.card-subtitle.mb-2.text-muted subtitle
+      p.card-text #{user.email}
+      p.card-text User e-mail verification status: #{user.email_verified}

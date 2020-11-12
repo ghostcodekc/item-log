@@ -1,8 +1,17 @@
-const express = require('express');
-const app = express();
 require('dotenv').config();
+const createError = require("http-errors");
+const express = require('express');
+const path = require("path");
 const { auth, requiresAuth } = require('express-openid-connect');
+const dashboardRouter = require("./routes/dashboard");
+const publicRouter = require("./routes/public");
+const profileRouter = require('./routes/profile');
+const usersRouter = require("./routes/users");
 
+// App initialization
+const app = express();
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "pug");
 app.use(
     auth({
         authRequired: false,
@@ -14,16 +23,22 @@ app.use(
     })
 );
 
+// Routes
+app.use("/", publicRouter);
+app.use("/dashboard", requiresAuth(), dashboardRouter);
+app.use("/profile", requiresAuth(), profileRouter);
+app.use("/users", usersRouter);
 
-app.get('/', (req, res) => {
-    res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+// Error handlers
+app.use(function(req, res, next) {
+  next(createError(404));
 });
 
-app.get('/profile', requiresAuth(), (req, res) => {
-    res.send(JSON.stringify(req.oidc.user));
+app.use(function(err, req, res, next) {
+  res.locals.message = err.message;
+  res.locals.error = req.app.get("env") === "development" ? err : {};
+  res.status(err.status || 500);
+  res.render("error");
 });
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-    console.log(`listening on port ${port}`);
-});
+module.exports = app;
